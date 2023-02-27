@@ -144,8 +144,8 @@ impl ContinuousCDF<f64, f64> for FisherSnedecor {
         } else {
             beta::beta_reg(
                 self.freedom_2 / 2.0,
-                self.freedom_1 / 2.0, 
-                1. - ((self.freedom_1 * x) / (self.freedom_1 * x + self.freedom_2))
+                self.freedom_1 / 2.0,
+                1. - ((self.freedom_1 * x) / (self.freedom_1 * x + self.freedom_2)),
             )
         }
     }

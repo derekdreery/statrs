@@ -193,7 +193,7 @@ impl DiscreteCDF<u64, f64> for Hypergeometric {
         } else {
             let k = x;
             let ln_denom = factorial::ln_binomial(self.population, self.draws);
-            (k + 1 .. self.max() + 1).fold(0.0, |acc, i| {
+            (k + 1..self.max() + 1).fold(0.0, |acc, i| {
                 acc + (factorial::ln_binomial(self.successes, i)
                     + factorial::ln_binomial(self.population - self.successes, self.draws - i)
                     - ln_denom)

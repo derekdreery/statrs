@@ -101,7 +101,7 @@ impl DiscreteCDF<u64, f64> for Bernoulli {
         self.b.cdf(x)
     }
 
-    /// Calculates the survival function for the 
+    /// Calculates the survival function for the
     /// bernoulli distribution at `x`.
     ///
     /// # Formula

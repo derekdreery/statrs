@@ -138,6 +138,41 @@ impl DiscreteCDF<u64, f64> for Binomial {
             beta::beta_reg(k as f64 + 1.0, (self.n - k) as f64, self.p)
         }
     }
+
+    /// Calculate the value of the inverse function to the cdf, sometimes known as the quantile
+    /// function.
+    ///
+    /// Currently very naive, using interval bisection and the fact that the quantile funciton is
+    /// monotonic.
+    fn inverse_cdf(&self, p: f64) -> u64 {
+        if p == 0. {
+            return 0;
+        }
+        if p == 1. {
+            return self.n;
+        }
+        let mut high = 2;
+        let mut low = 0;
+        while self.cdf(high) < p {
+            high *= 2;
+        }
+        let mut iter = 1;
+        loop {
+            if iter == 10000 {
+                panic!("inverse_cdf not converging high = {high} low = {low}");
+            }
+            iter += 1;
+            if high == low {
+                return high;
+            }
+            let mid = (high + low) / 2;
+            if self.cdf(mid) >= p {
+                high = mid;
+            } else {
+                low = mid;
+            }
+        }
+    }
 }
 
 impl Min<u64> for Binomial {

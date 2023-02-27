@@ -102,7 +102,7 @@ impl ContinuousCDF<f64, f64> for LogNormal {
     /// the normal cdf Φ (and internal error function) as the following property:
     /// ```ignore
     ///  Φ(-x) + Φ(x) = 1
-    ///  Φ(-x)        = 1 - Φ(x) 
+    ///  Φ(-x)        = 1 - Φ(x)
     /// ```
     fn sf(&self, x: f64) -> f64 {
         if x <= 0.0 {

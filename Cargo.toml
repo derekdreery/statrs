@@ -10,7 +10,7 @@ categories = ["science"]
 documentation = "https://docs.rs/statrs/0.15.0/statrs/"
 homepage = "https://github.com/boxtown/statrs"
 repository = "https://github.com/boxtown/statrs"
-edition = "2018"
+edition = "2021"
 
 [lib]
 name = "statrs"
