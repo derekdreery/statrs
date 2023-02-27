@@ -165,6 +165,16 @@ impl DiscreteCDF<u64, f64> for Binomial {
             if high == low {
                 return high;
             }
+            // Should we be finding the nearest like this code does, or the nearest lower/upper?
+            if high - low == 1 {
+                let low_dist = (self.cdf(low) - p).abs();
+                let high_dist = (self.cdf(high) - p).abs();
+                if low_dist < high_dist {
+                    return low;
+                } else {
+                    return high;
+                }
+            }
             let mid = (high + low) / 2;
             if self.cdf(mid) >= p {
                 high = mid;
